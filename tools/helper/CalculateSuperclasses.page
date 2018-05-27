@@ -1,0 +1,12 @@
+<apex:page controller="SuperCalculateController">
+    
+    <apex:form id="form">
+        <apex:pageBlock title="Start calculation of super classes.">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Run" action="{!run}" />
+            </apex:pageBlockButtons>    
+            
+        </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>
