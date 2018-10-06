@@ -840,6 +840,10 @@
            ""
            (str "<" params ">")))))
 
+(defmethod to-string :array-type [m]
+  (str (to-string (first (:parameters m)))
+       "[]"))
+
 (defmethod to-string nil [m] "")
 
 (defmethod to-string :method-parameter [m]
