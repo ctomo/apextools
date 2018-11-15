@@ -16,10 +16,10 @@
                  [com.taoensso/timbre "4.10.0"]
                  [com.taoensso/nippy "2.14.0"]
                  [com.rpl/specter "1.1.0"]
-                 [org.glassfish.jaxb/jaxb-xjc "2.3.0"]
-                 [org.glassfish.jaxb/jaxb-runtime "2.3.0"]
+                 [org.glassfish.jaxb/jaxb-xjc "2.3.1"]
+                 [org.glassfish.jaxb/jaxb-runtime "2.3.1"]
                  [javax.activation/javax.activation-api "1.2.0"]]
-  :plugins [[org.clojars.ctomo/lein-xjc "0.2.2"]
+  :plugins [[org.clojars.ctomo/lein-xjc "0.2.3"]
             [lein-antlr "0.3.0"]]
   :xjc-plugin {:xjc-calls [{:xsd-file "src/xsd/metadata.xsd" :options ["-quiet"]}]}
   :antlr-src-dir "src/antlr"
