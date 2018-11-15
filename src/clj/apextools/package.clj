@@ -14,7 +14,7 @@
 (defn load-metadata
   [path metadata-type]
   (when (-> path .toFile .exists)
-    (.getValue (jaxb/unmarshall path metadata-type))))
+    (.getValue (jaxb/unmarshal path metadata-type))))
 
 (defn load-meta-data-file
   [path name ext type]
@@ -25,7 +25,7 @@
 
 ;;; caching
 
-(def ast-version 1)
+(def ast-version 2)
 
 
 (def internal-path (str (System/getProperty "user.home") "/.apextools/"))

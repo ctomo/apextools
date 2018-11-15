@@ -352,7 +352,7 @@ soqlFieldFunction : identifier '(' soqlFieldValueExpression? ')';
 soqlDistanceFunction : DISTANCE '(' qualifiedName ',' GEOLOCATION '(' soqlNumber ',' soqlNumber ')' ',' soqlString ')' ;
 
 soqlValueList : '(' soqlValue (',' soqlValue)* ')';
-soqlValue : soqlNullValue | booleanLiteral | soqlDateLiteral | soqlString |  soqlNumber | soqlApexExpression;
+soqlValue : soqlNullValue | booleanLiteral | soqlDateLiteral | soqlDate | soqlDateTime | soqlString |  soqlNumber | soqlApexExpression;
 
 soqlNumber : ADD_OP? (INTEGER | DECIMAL);
 soqlNullValue : NULL;
@@ -361,10 +361,11 @@ soqlApexExpression : ':' expression;
 
 soqlRawFieldList : soqlFieldValueExpression (',' soqlFieldValueExpression)*;
 
-soqlDateLiteral : (queryDateLiteral (':' INTEGER)?)
-                | soqlDateTime
-                ;
-soqlDateTime : DATETIME | DATE;
+soqlDateLiteral : queryDateLiteral (':' INTEGER)?;
+
+soqlDate : DATE;
+
+soqlDateTime : DATETIME;
 
 qualifiedName : identifier ('.' identifier)*;
 

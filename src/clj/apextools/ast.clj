@@ -707,11 +707,21 @@
                            :unit (n-> .soqlString)}))
 
     (exitSoqlDateLiteral [ctx]
-      (set-node :query-expression {:type :literal
+      (set-node :expression {:type :literal
                                    :data-type :date
                                    :value (child-text ctx [0 0])
-                                   :count (child-text ctx [2])}))
-    
+                                   :count (when (< 1 (.getChildCount ctx)) (child-text ctx [2]))}))
+
+    (exitSoqlDate [ctx]
+      (set-node :expression {:type :literal
+                             :data-type :date
+                             :value (child-text ctx [0])}))
+
+    (exitSoqlDateTime [ctx]
+      (set-node :expression {:type :literal
+                             :data-type :datetime
+                             :value (child-text ctx [0])}))
+
     (exitSoqlNumber [ctx]
       (set-node :expression
                 {:type :literal

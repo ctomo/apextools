@@ -34,6 +34,16 @@
            (gen-ast "classDeclaration" "class A {}")))
 
     (is (= {:type :class,
+            :identifier {:value "MyInheritedSharingClass", :node-category :identifier},
+            :modifiers [{:value :public, :node-category :modifier} {:value :inherited-sharing, :node-category :modifier}],
+            :type-parameters nil,
+            :super-class nil,
+            :interfaces nil,
+            :body [],
+            :node-category :type-declaration}
+          (gen-ast "classDeclaration" "public inherited sharing class MyInheritedSharingClass {}")))
+
+    (is (= {:type :class,
             :identifier {:value "Foobar", :node-category :identifier},
             :modifiers [{:value :public, :node-category :modifier}],
             :type-parameters nil,
@@ -713,6 +723,32 @@
            :node-category :query-clause},
           :node-category :object-query}
          (gen-ast "soqlQuery" "SELECT Id FROM Account WHERE Id != null AND (NOT Name LIKE '%A')")))
+
+  (is (= {:data-type :datetime
+          :node-category :expression
+          :type :literal
+          :value "2000-11-12T13:08:57.000Z"}
+        (gen-ast "soqlDateTime" "2000-11-12T13:08:57.000Z")))
+
+  (is (= {:data-type :date
+          :node-category :expression
+          :type :literal
+          :value "2018-01-01"}
+        (gen-ast "soqlDate" "2018-01-01")))
+
+  (is (= {:count nil
+          :data-type :date
+          :node-category :expression
+          :type :literal
+          :value "LAST_MONTH"}
+        (gen-ast "soqlDateLiteral" "LAST_MONTH")))
+
+  (is (= {:count "1"
+          :data-type :date
+          :node-category :expression
+          :type :literal
+          :value "LAST_N_DAYS"}
+        (gen-ast "soqlDateLiteral" "LAST_N_DAYS:1")))
 
   (is (= {:tables
           [{:name
